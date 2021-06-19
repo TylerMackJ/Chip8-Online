@@ -16,6 +16,12 @@ const ctx = canvas.getContext("2d");
 ctx.canvas.width = width * PIXEL_SIZE;
 ctx.canvas.height = height * PIXEL_SIZE;
 
+var audioContext = new AudioContext();
+var o = audioContext.createOscillator();
+var audioPlaying = false
+o.type = "square";
+o.start()
+
 let started = false;
 
 setInterval(() => {
@@ -26,7 +32,17 @@ setInterval(() => {
 
 setInterval(() => {
     if (started) {
-        chip8.handle_timers();
+        if (chip8.handle_timers()) {
+            if (!audioPlaying) {
+                audioPlaying = true;
+                o.connect(audioContext.destination);
+            }
+        } else {
+            if (audioPlaying) {
+                audioPlaying = false;
+                o.disconnect(audioContext.destination);
+            }
+        }
     }
 }, 16);
 
