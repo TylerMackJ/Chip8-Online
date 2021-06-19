@@ -19,7 +19,7 @@ jobs:
           version: 'latest'
           
       - name: wasm-pack build
-        run: wasm-pack build
+        run: wasm-pack build --release
         
       - name: npm install
         run: npm install
