@@ -7,6 +7,7 @@ const PIXEL_SIZE = 10;
 
 const canvas = document.getElementById("chip8-canvas");
 const fileInput = document.getElementById("file-input");
+const fileName = document.getElementById("file-name");
 
 const chip8 = Chip8.new();
 const width = chip8.width();
@@ -83,6 +84,7 @@ const drawScreen = () => {
 
 const handleFile = (e) => {
     const file = e.currentTarget.files[0];
+    fileName.textContent = e.currentTarget.files[0].name;
     const reader = new FileReader();
     reader.onload = (e) => {
         var contents = e.target.result;
