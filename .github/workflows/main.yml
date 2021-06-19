@@ -21,9 +21,10 @@ jobs:
       - name: wasm-pack build
         run: wasm-pack build
         
-        
       - name: npm install
-        run: cd www & npm install
+        run: npm install
+        working-directory: ./www
         
       - name: npm build
         run: npm build
+        working-directory: ./www
