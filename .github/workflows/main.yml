@@ -11,11 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
         
-      - name: Build wasm-pack
-        run: ls
+      - name: Get wasm-pack
+        uses: jetli/wasm-pack-action@v0.3.0
+        with:
+          version: 'latest'
+          
+      - name: wasm-pack build
+        run: wasm-pack build
+        
         
       - name: npm install
         run: cd www & npm install
