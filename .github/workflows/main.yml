@@ -11,5 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get Webpack
-        run: rustup
+      - name: Get wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+        
+      - name: Build wasm-pack
+        run: wasm-pack build
+        
+      - name: npm install
+        run: cd www & npm install
+        
+      - name: npm build
+        run: npm build
